@@ -1,0 +1,12 @@
+{
+  "name": "dark-mods-skinz",
+  "version": "1.0.0",
+  "description": "DARK MODS SKiNZ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
