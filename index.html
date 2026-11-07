@@ -1,44 +1,83 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DARK MODS SKiNZ</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
-  background: #080808;
-  color: white;
-  font-family: Arial;
-  text-align: center;
-  margin: 0;
+  background:#080808;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+  margin:0;
 }
 header {
-  background: #151515;
-  padding: 25px;
-  color: red;
-  font-size: 28px;
-  font-weight: bold;
+  background:#151515;
+  padding:25px;
+  color:red;
+  font-size:27px;
+  font-weight:bold;
 }
 .box {
-  background: #181818;
-  margin: 30px;
-  padding: 25px;
-  border-radius: 12px;
+  background:#181818;
+  margin:25px auto;
+  padding:25px;
+  border-radius:12px;
+  max-width:420px;
+  width:80%;
 }
 button {
-  background: red;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
+  background:red;
+  color:white;
+  padding:14px 28px;
+  border:0;
+  border-radius:8px;
+  font-weight:bold;
+  font-size:16px;
+}
+button:disabled {
+  background:#555;
+}
+#status {
+  color:#ff5555;
+  margin:18px 0;
 }
 </style>
 </head>
 <body>
 <header>DARK MODS SKiNZ</header>
+
 <div class="box">
 <h2>WELCOME</h2>
-<p>Welcome to DARK MODS SKiNZ</p>
 <p>Your ultimate skin collection!</p>
+<hr>
+<h2>🔑 KEY SYSTEM</h2>
+<p id="status">Checking your key...</p>
+<button disabled>GET KEY</button>
+<p>Key duration: 6 Hours</p>
+<p style="color:#aaa;font-size:12px">
+Rewarded ads are awaiting provider approval.
+</p>
 </div>
+
+<script>
+async function checkKey() {
+  const status = document.getElementById("status");
+  try {
+    const response = await fetch("/api/status");
+    const data = await response.json();
+
+    if (data.authorized) {
+      status.textContent = "Your key is active!";
+    } else {
+      status.textContent = "No active key. Ads setup pending.";
+    }
+  } catch {
+    status.textContent = "Unable to check key.";
+  }
+}
+checkKey();
+</script>
 </body>
 </html>
